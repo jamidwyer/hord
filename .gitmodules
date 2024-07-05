@@ -1,0 +1,6 @@
+[submodule "server"]
+	path = server
+	url = https://github.com/jamidwyer/django-inventory-cms
+[submodule "client"]
+	path = client
+	url = https://github.com/jamidwyer/nextjs-inventory

@@ -1,0 +1,76 @@
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    volumes:
+      - static-data:/vol/server
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    links:
+      - db:db
+    entrypoint: /app/server/entrypoint.sh
+
+  db:
+    container_name: db
+    image: postgres:15
+    restart: always
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_HOST=${DB_HOST}
+    ports:
+      - "5432:5432"
+
+  client:
+    container_name: client
+    restart: always
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
+    links:
+      - server:server
+    entrypoint: /client/entrypoint.sh
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 443:443
+      - 80:80
+    volumes:
+      - static-data:/vol/static
+    links:
+      - server
+      - client
+    depends_on:
+      - client
+
+volumes:
+  postgres-data:
+  static-data:
