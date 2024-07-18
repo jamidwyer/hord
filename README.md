@@ -10,9 +10,12 @@ Inventory tracking.
 
 ### MVP
 
+- get aws set up right https://testdriven.io/blog/django-docker-https-aws/
 - query django from nextjs
-- deploy this version to EC2/RDS
 
 ### Nice to have
 
+- clean up static volumes
+- asdf
+- clean up nginx config
 - clean up submodule code made redundant by unifying here
