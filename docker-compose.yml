@@ -54,7 +54,6 @@ services:
       - hord_server
     links:
       - hord_server:hord_server
-    entrypoint: /client/entrypoint.sh
     ports:
       - "3000:3000"
 
