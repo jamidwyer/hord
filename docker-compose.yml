@@ -15,6 +15,7 @@ services:
       - DB_PASS=${DB_PASS}
       - SECRET_KEY=${DJANGO_SECRET_KEY}
       - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - CSRF_TRUSTED_ORIGINS=${CSRF_TRUSTED_ORIGINS}
     depends_on:
       - hord_db
     links:
@@ -65,6 +66,7 @@ services:
       - 443:443
     volumes:
       - ./nginx/conf.d/:/etc/nginx/conf.d/:ro
+      - ./certs:/etc/letsencrypt/live/hord.tech/:ro
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     depends_on:
