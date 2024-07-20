@@ -16,6 +16,8 @@ Inventory tracking.
 ### Nice to have
 
 - clean up static volumes
+- move off amazon linux
+- automate ssl renewal
 - asdf
 - clean up nginx config
 - clean up submodule code made redundant by unifying here
