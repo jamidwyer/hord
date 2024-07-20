@@ -9,6 +9,7 @@ services:
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     environment:
+      - DEBUG=${DEBUG}
       - DB_HOST=hord_db
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
