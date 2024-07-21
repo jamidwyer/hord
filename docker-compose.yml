@@ -5,9 +5,8 @@ services:
       dockerfile: Dockerfile
     container_name: hord_server
     volumes:
-      - static-data:/vol/server
-      - static_volume:/home/app/web/staticfiles
-      - media_volume:/home/app/web/mediafiles
+      - static_volume:/staticfiles
+      - media_volume:/mediafiles
     environment:
       - DEBUG=${DEBUG}
       - DB_HOST=hord_db
@@ -68,14 +67,13 @@ services:
     volumes:
       - ./nginx/conf.d/:/etc/nginx/conf.d/:ro
       - ./certs:/etc/letsencrypt/live/hord.tech/:ro
-      - static_volume:/home/app/web/staticfiles
-      - media_volume:/home/app/web/mediafiles
+      - static_volume:/staticfiles
+      - media_volume:/mediafiles
     depends_on:
       - hord_client
       - hord_server
 
 volumes:
   postgres-data:
-  static-data:
   static_volume:
   media_volume:
