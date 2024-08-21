@@ -4,6 +4,8 @@ Inventory tracking. Work in progress.
 
 ## Dev
 
+`git submodule init && git submodule update`
+
 `docker compose up --build`
 
 If things go right, you'll see the following:
@@ -11,6 +13,10 @@ If things go right, you'll see the following:
 - a NextJS frontend at http://localhost
 - Django admin at http://localhost/admin
 - Swagger docs at http://localhost/api/docs
+
+Create a superuser:
+
+`docker exec -it hord_server python manage.py createsuperuser`
 
 ## Deploy
 
@@ -22,22 +28,18 @@ Pull changes.
 
 ### MVP
 
-- query django from nextjs
+- auth
+- user-specific inventory
+- persist data with rds
 
 ### Nice to have
 
-- graphene
-- persist data with rds
-- other people can sign up
 - different nginx for prod and dev
+- mock data
 - https://whitenoise.readthedocs.io/en/stable/
 - clean up static volumes
-- move off amazon linux
-- make server dev standalone
-- make client dev standalone
 - non-docker server dev
-- non-docker client dev
 - automate ssl renewal
-- asdf
 - clean up nginx config
 - clean up submodule code made redundant by unifying here
+- aws secret manager
