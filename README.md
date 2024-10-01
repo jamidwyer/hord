@@ -35,7 +35,9 @@ Pull changes.
 
 ### Nice to have
 
+- move not-found out of recipes
 - different nginx for prod and dev
+- recipes a completely separate app
 - mock data
 - https://whitenoise.readthedocs.io/en/stable/
 - non-docker server dev

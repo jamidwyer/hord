@@ -22,7 +22,6 @@ services:
       - hord_db:hord_db
     expose:
       - 8000
-    entrypoint: /app/server/entrypoint.sh
 
   hord_db:
     container_name: hord_db
