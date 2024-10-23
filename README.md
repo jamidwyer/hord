@@ -13,7 +13,7 @@ If things go right, you'll see the following:
 - a NextJS frontend at http://localhost
 - Django admin at http://localhost/admin
 - Swagger docs at http://localhost/api/docs
-- GraphiQL at http://localhost/graphql
+- GraphQL at http://localhost/graphql
 
 Create a superuser:
 
@@ -29,9 +29,7 @@ Pull changes.
 
 ### MVP
 
-- auth
-- user-specific inventory
-- persist data with rds
+- log user out in django from fe
 
 ### Nice to have
 
@@ -45,3 +43,4 @@ Pull changes.
 - clean up nginx config
 - clean up submodule code made redundant by unifying here
 - aws secret manager
+- adrs https://github.com/npryce/adr-tools
