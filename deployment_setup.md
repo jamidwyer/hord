@@ -40,8 +40,23 @@ Add it to GitHub by clicking your profile picture, Settings, SSH & GPG Keys.
 
 `git submodule update --init`
 
+## Set up SSL
 
-## One-time setup
+```
+sudo apt-get update
+sudo apt-get install certbot python3-certbot-nginx
+```
+
+`docker compose down`
+
+Uncomment the SSL lines in nginx/conf.d/nginx.conf.
+
+Run:
+`sudo certbot --nginx -d hord.tech -d www.hord.tech`
+
+Change the path to the privkey and fullchain pems to the path certbot created.
+
+## Etc
 
 `cp env_example .env`
 
