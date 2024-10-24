@@ -1,6 +1,10 @@
 # hord
 
-Inventory tracking. Work in progress.
+CMS to track personal and community food resources, in hopes of reducing food waste while keeping us all fed! 
+
+I do not plan to make a profit on this labor of love, so if you're a hippie nerd like me, pull requests very gratefully accepted.
+
+Currently very close to ready for some test users!
 
 ## Dev
 
@@ -20,8 +24,11 @@ Create a superuser:
 `docker exec -it hord_server python manage.py createsuperuser`
 
 ## Deploy
+[Deployment setup](deployment_setup.md)
 
-Pull changes.
+ssh into server.
+
+Pull changes from this repo.
 
 `docker compose up --build`
 
@@ -29,14 +36,29 @@ Pull changes.
 
 ### MVP
 
-- log user out in django from fe
+- /Fix accounts/profile 404 for non-admin
+- Add note about signups soon to django login page
+- Fix login page
+- Redirect from Django to inventory after login
+- If redirect still a no on expected ports, big giant link to inventory post-login page
+- Test and fix show stoppers
+- test restoring from backups
+- Add signup link to django login page
 
 ### Nice to have
 
+- make django part look better -- css submodule?
+- Allow trusted users to work within CMS
+- establish user trust rules
+- figure out how to scale data before server costs bankrupt me
+- make backup before merging server code
+- upload backups to s3
+- lose REST or build it out
 - move not-found out of recipes
 - different nginx for prod and dev
 - recipes a completely separate app
 - mock data
+- activitypub integration?
 - https://whitenoise.readthedocs.io/en/stable/
 - non-docker server dev
 - automate ssl renewal

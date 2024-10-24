@@ -40,7 +40,6 @@ Add it to GitHub by clicking your profile picture, Settings, SSH & GPG Keys.
 
 `git submodule update --init`
 
-
 ## One-time setup
 
 `cp env_example .env`
