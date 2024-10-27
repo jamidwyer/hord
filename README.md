@@ -36,23 +36,19 @@ Pull changes from this repo.
 
 ### MVP
 
-- /Fix accounts/profile 404 for non-admin
 - Add note about signups soon to django login page
-- Fix login page
-- Redirect from Django to inventory after login
-- If redirect still a no on expected ports, big giant link to inventory post-login page
-- Test and fix show stoppers
 - test restoring from backups
 - Add signup link to django login page
 
 ### Nice to have
 
-- make django part look better -- css submodule?
+- handle shared css better -- submodule?
 - Allow trusted users to work within CMS
 - establish user trust rules
 - figure out how to scale data before server costs bankrupt me
 - make backup before merging server code
 - upload backups to s3
+- image recognition 
 - lose REST or build it out
 - move not-found out of recipes
 - different nginx for prod and dev
