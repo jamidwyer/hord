@@ -42,10 +42,12 @@ Pull changes from this repo.
 
 ### Nice to have
 
+- unique product name
 - handle shared css better -- submodule?
 - Allow trusted users to work within CMS
 - establish user trust rules
 - figure out how to scale data before server costs bankrupt me
+- make ingredients optional
 - make backup before merging server code
 - upload backups to s3
 - image recognition 
@@ -55,6 +57,7 @@ Pull changes from this repo.
 - recipes a completely separate app
 - mock data
 - activitypub integration?
+- https://diagrams.mingrammer.com/docs/getting-started/installation
 - https://whitenoise.readthedocs.io/en/stable/
 - non-docker server dev
 - automate ssl renewal
