@@ -1,6 +1,6 @@
 # hord
 
-CMS to track personal and community food resources, in hopes of reducing food waste while keeping us all fed! 
+CMS to track personal and community food resources, in hopes of reducing food waste while keeping us all fed!
 
 I do not plan to make a profit on this labor of love, so if you're a hippie nerd like me, pull requests very gratefully accepted.
 
@@ -24,6 +24,7 @@ Create a superuser:
 `docker exec -it hord_server python manage.py createsuperuser`
 
 ## Deploy
+
 [Deployment setup](deployment_setup.md)
 
 ssh into server.
@@ -36,13 +37,12 @@ Pull changes from this repo.
 
 ### MVP
 
-- Add note about signups soon to django login page
 - test restoring from backups
 - Add signup link to django login page
+- unique product name
 
 ### Nice to have
 
-- unique product name
 - handle shared css better -- submodule?
 - Allow trusted users to work within CMS
 - establish user trust rules
@@ -50,7 +50,7 @@ Pull changes from this repo.
 - make ingredients optional
 - make backup before merging server code
 - upload backups to s3
-- image recognition 
+- image recognition
 - lose REST or build it out
 - move not-found out of recipes
 - different nginx for prod and dev
