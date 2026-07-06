@@ -61,6 +61,29 @@ Create a superuser:
 
 `docker exec -it hord_server python manage.py createsuperuser`
 
+## SSL (Let's Encrypt / certbot)
+
+DNS for `hord.food` (and `www.hord.food`) must already point at the server before doing this, since Let's Encrypt verifies ownership over HTTP.
+
+`docker-compose.yml` defines a `certbot` service that renews certs automatically every 12h (a no-op unless a cert is within 30 days of expiry), and the `nginx` service reloads itself every 12h to pick up renewed certs. Certs live on the host at `/etc/letsencrypt`, bind-mounted into both containers.
+
+The 443 server block in `nginx/conf.d/nginx.conf` points at `/cert/live/hord.food/fullchain.pem`. nginx refuses to start if that file doesn't exist, so on a brand-new domain/server (or the first time you deploy this config) you have to get the cert before nginx can start with it:
+
+1. Stop nginx so port 80 is free: `docker compose stop nginx` (brief downtime).
+2. Get the first cert with certbot's standalone plugin, temporarily publishing port 80 for the one-off run:
+
+   ```sh
+   docker compose run --rm --publish 80:80 certbot certonly --standalone \
+     -d hord.food -d www.hord.food \
+     --email you@example.com --agree-tos --no-eff-email
+   ```
+
+3. `docker compose up -d` — nginx starts with the cert now in place, and the `certbot` sidecar starts its renewal loop.
+
+No need to touch `nginx.conf` for this — it's already checked in with the 443 block enabled.
+
+After that, renewal is automatic — nothing more to do. If you ever need to force a renewal check manually: `docker compose exec certbot certbot renew`.
+
 ## Notes
 
 - If you run into a migration error involving content types (locally only, not in production!), you can remove the postgres volumes with `docker compose down && docker volume rm hord_postgres-data`.
