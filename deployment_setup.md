@@ -19,6 +19,7 @@ Add an SSH key from the computer you're using.
 ssh username@ip.add.re.ss
 
 ## Install Docker
+
 https://docs.docker.com/engine/install/ubuntu/
 
 ## Connect your server to GitHub
@@ -62,5 +63,5 @@ Create a superuser:
 
 ## Notes
 
-- If you run into a migration error involving content types, you can remove the postgres volumes with `docker compose down && docker volume rm hord_postgres-data`.
+- If you run into a migration error involving content types (locally only, not in production!), you can remove the postgres volumes with `docker compose down && docker volume rm hord_postgres-data`.
 - You can change DEBUG=1 in .env to troubleshoot Django.
