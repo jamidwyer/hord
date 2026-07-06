@@ -54,8 +54,8 @@ services:
       - hord_server
     links:
       - hord_server:hord_server
-    ports:
-      - "3000:3000"
+    expose:
+      - 3000
 
   nginx:
     image: nginx:latest
