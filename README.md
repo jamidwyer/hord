@@ -10,11 +10,13 @@ Currently very close to ready for some test users!
 
 `git submodule init && git submodule update`
 
-`docker compose up --build`
+`docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build`
+
+This runs nginx over plain HTTP (no TLS cert needed locally). Plain `docker compose up --build` uses the production nginx config, which requires a real Let's Encrypt cert and won't start locally.
 
 If things go right, you'll see the following:
 
-- a NextJS frontend at http://localhost
+- a React frontend at http://localhost
 - Django admin at http://localhost/admin
 - Swagger docs at http://localhost/api/docs
 - GraphQL at http://localhost/graphql
