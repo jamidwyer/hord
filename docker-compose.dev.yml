@@ -1,0 +1,32 @@
+# Local dev only. Not auto-loaded -- run with:
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+# Swaps nginx onto the HTTP-only dev config in nginx/conf.d.dev, since
+# the production config requires a real Let's Encrypt cert for
+# hord.food that only exists on the deploy server. Also bind-mounts
+# client/server source and switches both to auto-reloading dev servers
+# so code changes show up without an image rebuild.
+services:
+  nginx:
+    volumes:
+      - ./nginx/conf.d.dev/:/etc/nginx/conf.d/:ro
+      - certbot_www:/var/www/certbot
+      - static_volume:/staticfiles
+      - media_volume:/mediafiles
+
+  hord_server:
+    volumes:
+      - ./server:/app/server
+      - static_volume:/staticfiles
+      - media_volume:/mediafiles
+    command: sh ./entrypoint.dev.sh
+
+  hord_client:
+    volumes:
+      - ./client:/app
+      - client_node_modules:/app/node_modules
+      - client_next_cache:/app/.next
+    command: sh -c "npm install && npm run dev"
+
+volumes:
+  client_node_modules:
+  client_next_cache:
